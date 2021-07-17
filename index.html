@@ -1,1 +1,161 @@
 
+<!DOCTYPE html>
+<html> 
+<head>
+    <script>
+    
+    /* 😃️script to take as input two numbers from the html  form and   pass the values  for
+      multiplication to  the   function for karatsuba multiplication   */
+  function multiplyBy(){
+        form_num1 = document.getElementById("firstNumber").value;
+        form_num2 = document.getElementById("secondNumber").value;
+        document.getElementById("result").innerHTML = KaratsubaMultiplication(form_num1, form_num2);
+        }
+  
+  
+  
+  
+  function KaratsubaMultiplication(x, y) {
+  
+  
+  
+
+  let pointer  = Math.min(('' + x).length, ('' + y).length);     //  😀️code to check   if one of the 
+                                                                 //    input integer to be multiplied is   
+  if(pointer == 1)                                               //  a  single number or not .
+              return x * y;                                      // if yes then directly multiply the integers and return.
+
+ 
+  
+  
+  let tenpowhalfn = Math.pow(10, parseInt(pointer / 2));
+  let tenpown = Math.pow(10, 2 * parseInt(pointer / 2));
+
+  let a = parseInt(x / tenpowhalfn);
+  let b = x % tenpowhalfn;
+  let c = parseInt(y / tenpowhalfn);                      /* implementation of Karatsuba algorithm */
+  let d = y % tenpowhalfn;
+
+  
+  let caller = arguments.callee;
+  
+  /* recursive call to the function  KaratsubaMultiplication()    by   using the caller() */
+  return tenpown * caller(a, c) + tenpowhalfn * (caller(a, d) + caller(b, c)) + caller(b, d);   
+}
+
+</script>
+    
+<meta charset=utf-8 />
+<title>JavaScript program to calculate multiplication of two numbers using Karatsuba algorithm </title>
+<style type="text/css">
+body {margin: 30px;}
+</style> 
+</head>
+<body>
+
+
+
+
+<p><strong><em><span style="font-size: 20px;">Index</span></em></strong>&nbsp; &nbsp; ( <em><span style="color: rgb(85, 57, 130);">jump to specific bit &nbsp;by clicking on link</span></em>).</p>
+<p><a href="#Results analysis"><strong><em><span style="font-size: 20px;">For CALCULATOR</span></em></strong>&nbsp; &nbsp; ( <em><span style="color: rgb(85, 57, 130);">jump to Results analysis &nbsp;by clicking on link</span></em>).</a></p>
+<p><br></p>
+<p><a href="#Project title"><strong>o&nbsp;</strong><span style="color: rgb(0, 0, 0);"><strong>&nbsp;Project title</strong></span></a></p>
+<p><a href="#Input specifications"><strong>o&nbsp;</strong><span style="color: rgb(0, 0, 0);"><strong>&nbsp;Input specifications</strong></span></a></p>
+<p><a href="#Objective"><strong>o&nbsp;</strong><span style="color: rgb(0, 0, 0);"><strong>&nbsp;Objective</strong></span></a></p>
+
+
+<p><a href="#Pseudocode"><strong>o&nbsp;</strong><span style="color: rgb(0, 0, 0);"><strong>&nbsp;Pseudocode</strong></span></a></p>
+<p><a href="#Code"><strong>o&nbsp;</strong><span style="color: rgb(0, 0, 0);"><strong>&nbsp;Code</strong></span></a></p>
+<p><a href="#Results analysis"><strong>o&nbsp;</strong><span style="color: rgb(0, 0, 0);"><strong>&nbsp;Results analysis</strong></span></a></p>
+<p><a href="#Real-life applications"><strong>o&nbsp;</strong><span style="color: rgb(0, 0, 0);"><strong>&nbsp;Real-life applications</strong></span></a></p>
+<p><a href="#DECLARATION BY THE CANDIDATE"><strong>o&nbsp;</strong><span style="color: rgb(0, 0, 0);"><strong>&nbsp;DECLARATION BY THE CANDIDATE;</strong></span></a></p>
+<p><br></p>
+<p><br></p>
+
+
+
+<p id= "Project title"><span style="font-size: 20px; color: rgb(41, 105, 176);" ;> o<strong> Project title</strong></span> &nbsp; <strong><span style="font-size: 20px;"> JavaScript program to calculate multiplication of two numbers using Karatsuba algorithm.</span></strong></p>
+<p><br><p>
+
+
+
+<p id ="Input specifications"><strong><span style="font-size: 20px; color: rgb(41, 105, 176);">o<strong> Input specifications </span></strong> &nbsp; <strong><span style="font-size: 20px;"> Two integers to be Multiplied. </span></strong></p>
+
+<p><br></p>
+
+
+<p id="Objective"><strong><span style="font-size: 20px; color: rgb(41, 105, 176);">o Objective</span></strong> &nbsp; <strong><span style="font-size: 20px;"> To multiply two numbers of size n , in the minimum  possible time complexity as prescribed by the Karatsuba Algorithm. </span></strong></p>
+
+<p><br></p>
+
+
+
+
+
+
+  <p id ="Pseudocode"><strong><span style="font-size: 20px; color: rgb(41, 105, 176);">o Pseudocode</span></strong></p>
+<p><br></p>
+<ol>
+    <li>procedure karatsuba(num1, num2)</li>
+    <li>&nbsp; if (num1 &lt; 10) or (num2 &lt; 10)</li>
+    <li>&nbsp; &nbsp; return num1*num2;</li>
+    <li><br></li>
+    <li>&nbsp; else</li>
+    <li>&nbsp; /*if numbers have different bit size, 0 will be added to equal them*/</li>
+    <li>&nbsp; /*if any number is odd, next even digit will be used*/</li>
+    <li>&nbsp; n = max(size(num1),size(num2)</li>
+    <li>&nbsp; low1, low2 = lower half of num1, num2</li>
+    <li>&nbsp; high1, high2 = higher half of num1, num2</li>
+    <li>&nbsp; z0 = karatsuba(low1,low2)</li>
+    <li>&nbsp; z1 = karatsuba((low1+high1),(low2+high2))</li>
+    <li>&nbsp; z2 = karatsuba(high1,high2)</li>
+    <li>&nbsp; c1 = pow(2,n)-pow(2,n/2);</li>
+    <li>&nbsp; c2 = pow(2,n/2);</li>
+    <li>&nbsp; c3 = 1-pow(2,n/2);</li>
+    <li>&nbsp; return c1*z2+c2*z1+c3*z0</li>
+    
+</ol>
+
+<p><br></p>
+
+<p id ="Code"><strong><span style="font-size: 20px; color: rgb(41, 105, 176);">o Code </span></strong> &nbsp; <strong><span style="font-size: 20px;"> <br><A href="https://github.com/manishkumartiruwar/Karatsuba-algorithm-calculator/blob/main/index.html">Link to my github code . </a>
+<br><A href="https://manishkumartiruwar.github.io/Karatsuba-algorithm-calculator/">Link to my github Website . </a></span></strong></p>
+
+<p><br></p>
+
+
+<p id="Results analysis"><strong><span style="font-size: 20px; color: rgb(41, 105, 176);">o Results analysis</span></strong></p>
+
+<form>
+1st Number : <input type="text" id="firstNumber" /><br>
+2nd Number: <input type="text" id="secondNumber" /><br>
+<input type="button" onClick="multiplyBy()" Value="Multiply" />
+
+</form>
+<p>The Result is : <br>
+<span id = "result"></span>
+</p>
+<p><br></p>
+
+
+
+<p id ="Real-life applications"><strong><span style="font-size: 20px; color: rgb(41, 105, 176);">o Real-life applications</span></strong> &nbsp; <strong><span style="font-size: 20px;"> The Karatsuba algorithm decreases the number of subproblems to three and ends up calculating the product of two nn-bit numbers in <span style="font-family: 'Arial Black', Gadget, sans-serif;"><span style="color: rgb(22, 22, 22); font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;">&nbsp;</span><span class="katex" style="box-sizing: border-box; font-style: normal; font-variant: normal; font-weight: 400; font-stretch: normal; font-size: 1.21em; line-height: 1.2; text-indent: 0px; text-rendering: auto; color: rgb(22, 22, 22); letter-spacing: normal; orphans: 2; text-align: start; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><span class="katex-mathml" style="box-sizing: border-box; position: absolute; clip: rect(1px, 1px, 1px, 1px); padding: 0px; border: 0px; height: 1px; width: 1px; overflow: hidden;">\Theta\big(n^{\log_2 3}\big)</span><span aria-hidden="true" class="katex-html" style="box-sizing: border-box;"><span class="base" style="box-sizing: border-box; position: relative; white-space: nowrap; width: min-content; display: inline-block;"><span class="mord" style="box-sizing: border-box;">&Theta;<span class="delimsizing size1" style="box-sizing: border-box;">(</span><span class="mord mathdefault" style="box-sizing: border-box; font-style: italic;">n</span><span class="delimsizing size1" style="box-sizing: border-box;"><sup>log</sup><sub>2</sub><sup>3</sup>)</span></span></span></span></span></span></strong></em><span style='color: rgb(22, 22, 22); font-family: "Arial Black", Gadget, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;'><strong><em>&nbsp;</em></strong></span> time--a vast improvement over the naive algorithm. </span></strong></p>
+
+<p><br></p>
+
+
+
+<p id  ="DECLARATION BY THE CANDIDATE"><strong><span style="font-size: 20px;">DECLARATION BY THE CANDIDATE</span></strong></p>
+<p>I the undersigned solemnly declare that the project report <strong><em>JavaScript program to calculate multiplication of two numbers using Karatsuba algorithm.</em></strong> is based on my own work carried out during the course of</p>
+<p>our study under the supervision of &nbsp;<strong><span style="color: rgb(41, 105, 176);">Paresh Baidya</span></strong>.I assert the statements made and conclusions drawn are an &nbsp;outcome of my research work. I further certify that</p>
+<p><strong>I</strong>. The work contained in the report is original and has been done by me under the general supervision of my supervisor.</p>
+<p><strong>II</strong>. The work has not been submitted to any other Institution for any other degree/diploma/certificate in this university or any other University of India or abroad.</p>
+<p><strong>III</strong>. I have followed the guidelines provided by the university in writing the report.</p>
+<p><strong>IV</strong>. Whenever I have used materials (data, theoretical analysis, and text) from other sources, we have given due credit to them in the text of the report and giving their details in the references.</p>
+<p>Name &nbsp; <strong>Manish Kumar Tiruwar</strong></p>
+<p>(Regd No.) <strong>1941012025</strong></p>
+<p>Section &nbsp; <strong>cse d</strong></p>
+<p><br></p>
+</body>
+</html>
+
