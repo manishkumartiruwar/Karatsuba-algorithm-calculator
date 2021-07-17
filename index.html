@@ -5,7 +5,7 @@
 {
         num1 = document.getElementById("firstNumber").value;
         num2 = document.getElementById("secondNumber").value;
-        document.getElementById("result").innerHTML = num1 * num2;
+        
 
  let n = Math.min(('' + num1).length, ('' + num2).length);
 
@@ -15,9 +15,9 @@
   let tenpowhalfn = Math.pow(10, parseInt(n / 2));
   let tenpown = Math.pow(10, 2 * parseInt(n / 2));
 
-  let a = parseInt(x / tenpowhalfn);
+  let a = parseInt(num1 / tenpowhalfn);
   let b = x % tenpowhalfn;
-  let c = parseInt(y / tenpowhalfn);
+  let c = parseInt(num2/ tenpowhalfn);
   let d = y % tenpowhalfn;
 
   let caller = arguments.callee;
